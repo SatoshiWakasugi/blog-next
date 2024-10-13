@@ -24,10 +24,10 @@ export const getUser = async (id: number) => {
   }
 };
 
-export const getUserPosts = async (id: number, published: boolean) => {
+export const getUserPosts = async (id: number, params?: string) => {
   try {
     const response = await fetch(
-      `${process.env.API_URL}/api/v1/users/${id}/posts?published=${published}`
+      `${process.env.API_URL}/api/v1/users/${id}/posts?${params}`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);

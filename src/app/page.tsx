@@ -10,7 +10,7 @@ export default async function Home() {
         <ul>
           {users.map((user: any) => (
             <li key={user.id} className="pb-4">
-              <a href={`/user/${user.id}`} className="flex flex-col">
+              <a href={`/users/${user.id}`} className="flex flex-col">
                 <p>
                   <span className="font-bold pr-2">name:</span>
                   {user.name}

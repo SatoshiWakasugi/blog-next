@@ -4,25 +4,48 @@ export default async function Home() {
   const users = await getUsers();
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:py-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full">
         <h1 className="text-xl">Users</h1>
-        <ul>
-          {users.map((user: any) => (
-            <li key={user.id} className="pb-4">
-              <a href={`/user/${user.id}`} className="flex flex-col">
-                <p>
-                  <span className="font-bold pr-2">name:</span>
+        <table className="w-full">
+          <thead>
+            <tr>
+              <th className="border py-2 px-4" scope="col">
+                id
+              </th>
+              <th className="border py-2 px-4" scope="col">
+                name
+              </th>
+              <th className="border py-2 px-4" scope="col">
+                email
+              </th>
+              <th className="border py-2 px-4" scope="col" />
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user: any) => (
+              <tr key={user.id}>
+                <td className="border py-2 px-4" scope="row">
+                  {user.id}
+                </td>
+                <td className="border py-2 px-4" scope="row">
                   {user.name}
-                </p>
-                <p>
-                  <span className="font-bold pr-2">email:</span>
+                </td>
+                <td className="border py-2 px-4" scope="row">
                   {user.email}
-                </p>
-              </a>
-            </li>
-          ))}
-        </ul>
+                </td>
+                <td className="border py-2 px-4" scope="row">
+                  <a
+                    href={`/users/${user.id}`}
+                    className="flex flex-col text-blue-600 font-bold"
+                  >
+                    詳細
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </main>
     </div>
   );

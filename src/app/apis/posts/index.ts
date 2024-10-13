@@ -4,7 +4,7 @@ export const getPosts = async (published: boolean) => {
       `${process.env.API_URL}/api/v1/posts?published=${published}`
     );
     if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
+      throw new Error("Network response was not ok" + response.statusText);
     }
     const data = await response.json();
     return data;
@@ -16,10 +16,12 @@ export const getPosts = async (published: boolean) => {
 export const getPost = async (postId: number) => {
   try {
     const response = await fetch(
-      `${process.env.API_URL}/api/v1/posts/${postId}`
+      `${
+        process.env.API_URL || process.env.NEXT_PUBLIC_API_URL
+      }/api/v1/posts/${postId}`
     );
     if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
+      throw new Error("Network response was not ok" + response.statusText);
     }
     const data = await response.json();
     return data;
@@ -41,7 +43,55 @@ export const createPost = async (postData: any) => {
       }
     );
     if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
+      throw new Error("Network response was not ok" + response.statusText);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const softDeletePost = async (postId: number) => {
+  try {
+    const response = await fetch(
+      `${
+        process.env.API_URL || process.env.NEXT_PUBLIC_API_URL
+      }/api/v1/posts/${postId}/soft_delete_post`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ deleted: true }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok" + response.statusText);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const Post = async (postId: number) => {
+  try {
+    const response = await fetch(
+      `${
+        process.env.API_URL || process.env.NEXT_PUBLIC_API_URL
+      }/api/v1/posts/${postId}/soft_delete_post`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ deleted: true }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok" + response.statusText);
     }
     const data = await response.json();
     return data;

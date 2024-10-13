@@ -34,14 +34,14 @@ const SIZES = {
   large: "py-3 px-6 text-lg",
 } as const;
 
-type ButtonProps = Omit<ComponentPropsWithoutRef<"button">, "ref"> & {
+export type ButtonProps = Omit<ComponentPropsWithoutRef<"button">, "ref"> & {
   color?: Colors;
   variant?: Variants;
   size?: Sizes;
   onClick?: () => void;
 };
 
-type AnchorProps = Omit<ComponentPropsWithoutRef<typeof Link>, "ref"> & {
+export type AnchorProps = Omit<ComponentPropsWithoutRef<typeof Link>, "ref"> & {
   color?: Colors;
   variant?: Variants;
   size?: Sizes;
@@ -50,7 +50,9 @@ type AnchorProps = Omit<ComponentPropsWithoutRef<typeof Link>, "ref"> & {
 
 type AS = "button" | "Link";
 
-type Props<T extends AS> = T extends "button" ? ButtonProps : AnchorProps;
+export type Props<T extends AS> = T extends "button"
+  ? ButtonProps
+  : AnchorProps;
 
 export const Button = forwardRef<HTMLButtonElement, Props<AS>>((props, ref) => {
   const {

@@ -7,7 +7,9 @@ type Props = {
 };
 
 export const UserPostsContainer: FC<Props> = async ({ userId, children }) => {
-  const { posts } = await getUserPosts(userId, true);
+  const { posts } = await getUserPosts(userId);
+
+  console.log(posts);
 
   return <>{children({ posts })}</>;
 };

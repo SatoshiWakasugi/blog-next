@@ -3,7 +3,7 @@ import { FC } from "react";
 
 type Props = {
   userId: number;
-  children: (data: { user: any }) => React.ReactNode; // レンダープロップスとして渡す関数の型定義
+  children: (data: { user: any }) => React.ReactNode;
 };
 
 export const UserContainer: FC<Props> = async ({ userId, children }) => {
