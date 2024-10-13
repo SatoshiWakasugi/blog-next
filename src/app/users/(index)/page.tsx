@@ -1,4 +1,4 @@
-import { getUsers } from "./apis/users";
+import { getUsers } from "@/app/apis/users";
 
 export default async function Home() {
   const users = await getUsers();

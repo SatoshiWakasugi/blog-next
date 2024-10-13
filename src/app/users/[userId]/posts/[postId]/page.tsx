@@ -1,4 +1,4 @@
-import { getPost } from "@/app/api/posts";
+import { getPost } from "@/app/apis/posts";
 
 export default async function UserIdPostId({
   params,
